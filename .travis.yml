@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true ryebro/docker-react npm run test
+
+deploy:
+  provider: elesticbeanstalk
+  region: "us-east-2"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-047650179555"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_ID
+  secret_access_key: $AWS_ACCESS_KEY
